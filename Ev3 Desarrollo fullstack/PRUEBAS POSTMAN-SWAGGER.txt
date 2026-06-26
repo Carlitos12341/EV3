@@ -1,0 +1,48 @@
+***********************************************POSTMAN****
+
+GET http://localhost:8081/api/clientes/
+
+---------------------------------------------
+GET http://localhost:8082/api/productos/
+
+---------------------------------------------
+POST http://localhost:8083/api/pedidos/
+{
+  "clienteId": 1,
+  "productoId": 1,
+  "cantidad": 2
+}
+
+GET http://localhost:8083/api/pedidos/
+
+---------------------------------------------
+POST http://localhost:8084/api/pagos/
+{
+  "pedidoId": 1,
+  "metodo": "TARJETA",
+  "monto": 700000
+}
+
+GET http://localhost:8084/api/pagos/
+
+---------------------------------------------
+POST http://localhost:8085/api/despachos/
+{
+  "pedidoId": 1,
+  "direccion": "Av. Siempre Viva 742",
+  "comuna": "Santiago"
+}
+
+GET http://localhost:8085/api/despachos/
+
+
+
+
+
+***********************************************SWAGGER****
+
+Clientes	http://localhost:8081/swagger-ui.html
+Productos	http://localhost:8082/swagger-ui.html
+Pedidos		http://localhost:8083/swagger-ui.html
+Pagos		http://localhost:8084/swagger-ui.html
+Despachos	http://localhost:8085/swagger-ui.html

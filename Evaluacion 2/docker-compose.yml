@@ -1,0 +1,211 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: mysql:8.0
+    container_name: taller-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bd_taller
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - taller-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ms-cita:
+    build:
+      context: ./Cita taller/taller.cl.duoc
+      dockerfile: Dockerfile
+    container_name: ms-cita
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - taller-net
+
+  ms-cliente:
+    build:
+      context: ./Cliente taller/taller.cl.duoc
+      dockerfile: Dockerfile
+    container_name: ms-cliente
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - taller-net
+
+  ms-factura:
+    build:
+      context: ./Facturacion taller
+      dockerfile: Dockerfile
+    container_name: ms-factura
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - taller-net
+
+  ms-inventario:
+    build:
+      context: ./Inventario taller
+      dockerfile: Dockerfile
+    container_name: ms-inventario
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - taller-net
+
+  ms-mecanico:
+    build:
+      context: ./Mecanico taller
+      dockerfile: Dockerfile
+    container_name: ms-mecanico
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - taller-net
+
+  ms-notificacion:
+    build:
+      context: ./Notificacion taller
+      dockerfile: Dockerfile
+    container_name: ms-notificacion
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - taller-net
+
+  ms-producto:
+    build:
+      context: ./Producto taller
+      dockerfile: Dockerfile
+    container_name: ms-producto
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - taller-net
+
+  ms-proveedor:
+    build:
+      context: ./Proveedor taller
+      dockerfile: Dockerfile
+    container_name: ms-proveedor
+    ports:
+      - "8087:8087"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - taller-net
+
+  ms-reparacion:
+    build:
+      context: ./Reparacion taller
+      dockerfile: Dockerfile
+    container_name: ms-reparacion
+    ports:
+      - "8088:8088"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - taller-net
+
+  ms-vehiculo:
+    build:
+      context: ./Vehiculo taller
+      dockerfile: Dockerfile
+    container_name: ms-vehiculo
+    ports:
+      - "8089:8089"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - taller-net
+
+  ms-gateway:
+    build:
+      context: ./Gateway taller
+      dockerfile: Dockerfile
+    container_name: ms-gateway
+    ports:
+      - "9090:9090"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+    depends_on:
+      - ms-cita
+      - ms-cliente
+      - ms-factura
+      - ms-inventario
+      - ms-mecanico
+      - ms-notificacion
+      - ms-producto
+      - ms-proveedor
+      - ms-reparacion
+      - ms-vehiculo
+    networks:
+      - taller-net
+
+volumes:
+  mysql_data:
+
+networks:
+  taller-net:
+    driver: bridge

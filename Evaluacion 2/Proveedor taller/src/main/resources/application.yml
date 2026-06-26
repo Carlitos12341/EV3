@@ -1,0 +1,25 @@
+server:
+  port: 8087  # El puerto de este microservicio
+
+spring:
+  application:
+    name: ms-proveedor  # El nombre de tu servicio
+  profiles:
+    active: dev  # Activa el perfil de desarrollo por defecto
+  datasource:
+    url: jdbc:mysql://localhost:3306/bd_taller?createDatabaseIfNotExist=true
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+springdoc:
+  swagger-ui:
+    path: /doc/swagger-ui.html

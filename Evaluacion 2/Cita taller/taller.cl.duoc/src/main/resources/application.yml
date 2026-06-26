@@ -1,0 +1,41 @@
+server:
+  port: 8080  # El puerto de este microservicio
+
+spring:
+  application:
+    name: ms-cita  # El nombre de tu servicio
+  profiles:
+    active: dev  # Activa el perfil de desarrollo por defecto
+  datasource:
+    url: jdbc:mysql://localhost:3306/bd_taller?createDatabaseIfNotExist=true
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+ms-mecanico:
+  url: http://localhost:8084
+
+ms-notificacion:
+  url: http://localhost:8085
+
+springdoc:
+  swagger-ui:
+    path: /doc/swagger-ui.html
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+    username: root
+    password: root

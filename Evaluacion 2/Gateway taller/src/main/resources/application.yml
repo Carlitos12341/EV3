@@ -1,0 +1,144 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: ms-gateway
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      routes:
+        - id: ms-cita
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/citas/**
+          filters:
+            - AddRequestHeader=X-Gateway-Source, TallerGateway
+
+        - id: ms-cliente
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/clientes/**
+          filters:
+            - AddRequestHeader=X-Gateway-Source, TallerGateway
+
+        - id: ms-factura
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/facturas/**
+          filters:
+            - AddRequestHeader=X-Gateway-Source, TallerGateway
+
+        - id: ms-inventario
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/inventarios/**
+          filters:
+            - AddRequestHeader=X-Gateway-Source, TallerGateway
+
+        - id: ms-mecanico
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/mecanicos/**
+          filters:
+            - AddRequestHeader=X-Gateway-Source, TallerGateway
+
+        - id: ms-notificacion
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/notificaciones/**
+          filters:
+            - AddRequestHeader=X-Gateway-Source, TallerGateway
+
+        - id: ms-producto
+          uri: http://localhost:8086
+          predicates:
+            - Path=/api/productos/**
+          filters:
+            - AddRequestHeader=X-Gateway-Source, TallerGateway
+
+        - id: ms-proveedor
+          uri: http://localhost:8087
+          predicates:
+            - Path=/api/proveedores/**
+          filters:
+            - AddRequestHeader=X-Gateway-Source, TallerGateway
+
+        - id: ms-reparacion
+          uri: http://localhost:8088
+          predicates:
+            - Path=/api/reparaciones/**
+          filters:
+            - AddRequestHeader=X-Gateway-Source, TallerGateway
+
+        - id: ms-vehiculo
+          uri: http://localhost:8089
+          predicates:
+            - Path=/api/vehiculos/**
+          filters:
+            - AddRequestHeader=X-Gateway-Source, TallerGateway
+
+      default-filters:
+        - AddResponseHeader=X-Powered-By, TallerMecanico-Gateway
+
+springdoc:
+  swagger-ui:
+    path: /doc/swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,routes
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  cloud:
+    gateway:
+      routes:
+        - id: ms-cita
+          uri: http://ms-cita:8080
+          predicates:
+            - Path=/api/citas/**
+        - id: ms-cliente
+          uri: http://ms-cliente:8081
+          predicates:
+            - Path=/api/clientes/**
+        - id: ms-factura
+          uri: http://ms-factura:8082
+          predicates:
+            - Path=/api/facturas/**
+        - id: ms-inventario
+          uri: http://ms-inventario:8083
+          predicates:
+            - Path=/api/inventarios/**
+        - id: ms-mecanico
+          uri: http://ms-mecanico:8084
+          predicates:
+            - Path=/api/mecanicos/**
+        - id: ms-notificacion
+          uri: http://ms-notificacion:8085
+          predicates:
+            - Path=/api/notificaciones/**
+        - id: ms-producto
+          uri: http://ms-producto:8086
+          predicates:
+            - Path=/api/productos/**
+        - id: ms-proveedor
+          uri: http://ms-proveedor:8087
+          predicates:
+            - Path=/api/proveedores/**
+        - id: ms-reparacion
+          uri: http://ms-reparacion:8088
+          predicates:
+            - Path=/api/reparaciones/**
+        - id: ms-vehiculo
+          uri: http://ms-vehiculo:8089
+          predicates:
+            - Path=/api/vehiculos/**

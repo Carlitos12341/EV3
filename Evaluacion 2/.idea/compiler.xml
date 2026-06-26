@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cliente-service" />
+        <module name="facturacion" />
+        <module name="ms-notificacion" />
+        <module name="notificacion" />
+        <module name="ms-inventario" />
+        <module name="ms-cliente" />
+        <module name="ms-mecanico" />
+        <module name="ms-vehiculo (1)" />
+        <module name="mecanico" />
+        <module name="ms-factura" />
+        <module name="ms-reparacion" />
+        <module name="ms-vehiculo (3)" />
+        <module name="ms-vehiculo (2)" />
+        <module name="ms-producto" />
+        <module name="ms-cita" />
+        <module name="proveedor" />
+        <module name="ms-proveedor" />
+        <module name="inventario" />
+        <module name="ms-vehiculo" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cliente-service" options="-parameters" />
+      <module name="facturacion" options="-parameters" />
+      <module name="inventario" options="-parameters" />
+      <module name="mecanico" options="-parameters" />
+      <module name="ms-cita" options="-parameters" />
+      <module name="ms-cliente" options="-parameters" />
+      <module name="ms-factura" options="-parameters" />
+      <module name="ms-inventario" options="-parameters" />
+      <module name="ms-mecanico" options="-parameters" />
+      <module name="ms-notificacion" options="-parameters" />
+      <module name="ms-producto" options="-parameters" />
+      <module name="ms-proveedor" options="-parameters" />
+      <module name="ms-reparacion" options="-parameters" />
+      <module name="ms-vehiculo" options="-parameters" />
+      <module name="ms-vehiculo (1)" options="-parameters" />
+      <module name="ms-vehiculo (2)" options="-parameters" />
+      <module name="ms-vehiculo (3)" options="-parameters" />
+      <module name="notificacion" options="-parameters" />
+      <module name="proveedor" options="-parameters" />
+    </option>
+  </component>
+</project>
