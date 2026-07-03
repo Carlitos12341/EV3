@@ -28,8 +28,9 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+      MS_MECANICO_URL: http://ms-mecanico:8084
+      MS_NOTIFICACION_URL: http://ms-notificacion:8085
     depends_on:
       db:
         condition: service_healthy
@@ -44,7 +45,6 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
     depends_on:
       db:
@@ -60,7 +60,6 @@ services:
     ports:
       - "8082:8082"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
     depends_on:
       db:
@@ -76,7 +75,6 @@ services:
     ports:
       - "8083:8083"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
     depends_on:
       db:
@@ -92,7 +90,6 @@ services:
     ports:
       - "8084:8084"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
     depends_on:
       db:
@@ -108,7 +105,6 @@ services:
     ports:
       - "8085:8085"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
     depends_on:
       db:
@@ -124,7 +120,6 @@ services:
     ports:
       - "8086:8086"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
     depends_on:
       db:
@@ -140,7 +135,6 @@ services:
     ports:
       - "8087:8087"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
     depends_on:
       db:
@@ -156,8 +150,8 @@ services:
     ports:
       - "8088:8088"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
+      MS_CITA_URL: http://ms-cita:8080
     depends_on:
       db:
         condition: service_healthy
@@ -172,7 +166,6 @@ services:
     ports:
       - "8089:8089"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bd_taller?createDatabaseIfNotExist=true
     depends_on:
       db:
@@ -188,7 +181,16 @@ services:
     ports:
       - "9090:9090"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
+      MS_CITA_URL: http://ms-cita:8080
+      MS_CLIENTE_URL: http://ms-cliente:8081
+      MS_FACTURA_URL: http://ms-factura:8082
+      MS_INVENTARIO_URL: http://ms-inventario:8083
+      MS_MECANICO_URL: http://ms-mecanico:8084
+      MS_NOTIFICACION_URL: http://ms-notificacion:8085
+      MS_PRODUCTO_URL: http://ms-producto:8086
+      MS_PROVEEDOR_URL: http://ms-proveedor:8087
+      MS_REPARACION_URL: http://ms-reparacion:8088
+      MS_VEHICULO_URL: http://ms-vehiculo:8089
     depends_on:
       - ms-cita
       - ms-cliente

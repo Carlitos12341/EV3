@@ -1,5 +1,7 @@
 package taller.cl.duoc.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ import java.util.HashMap;
 
 @Service
 public class CitaService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CitaService.class);
 
     @Autowired
     private CitaRepository repository;
@@ -52,7 +56,26 @@ public class CitaService {
         // 3. Si pasó las pruebas de arriba, recién ahí se guarda en la base de datos
         Cita citaGuardada = repository.save(cita);
 
-        // ... (el resto de tu código de notificación se mantiene igual abajo)
+        // 4. Notificamos al cliente de que la cita quedó agendada.
+        // No debe abortar la creación de la cita si el servicio de notificaciones falla.
+        try {
+            Map<String, Object> notificacion = new HashMap<>();
+            notificacion.put("clienteId", citaGuardada.getClienteId());
+            notificacion.put("tipo", "CITA_AGENDADA");
+            notificacion.put("mensaje", "Su cita para el " + citaGuardada.getFecha() + " ha sido agendada. Motivo: " + citaGuardada.getMotivo());
+            notificacion.put("fechaEnvio", citaGuardada.getFecha());
+
+            webClientBuilder.build()
+                    .post()
+                    .uri(msNotificacionUrl + "/api/notificaciones")
+                    .bodyValue(notificacion)
+                    .retrieve()
+                    .bodyToMono(Map.class)
+                    .block();
+        } catch (Exception e) {
+            logger.warn("No se pudo enviar la notificación de la cita {}: {}", citaGuardada.getId(), e.getMessage());
+        }
+
         return citaGuardada;
     }
 

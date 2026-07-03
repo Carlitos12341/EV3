@@ -1,0 +1,161 @@
+envVarGroups:
+  - name: taller-db
+    envVars:
+      # Base de datos MySQL externa (Aiven / Railway / Clever Cloud / etc.).
+      # Render no ofrece MySQL gestionado, por eso se completa a mano en el dashboard
+      # la primera vez que se crea el Blueprint (Environment Group "taller-db").
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+
+services:
+  - name: taller-ms-cita
+    type: web
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: "./Cita taller/taller.cl.duoc/Dockerfile"
+    dockerContext: "./Cita taller/taller.cl.duoc"
+    healthCheckPath: /doc/swagger-ui.html
+    envVarGroups:
+      - taller-db
+    envVars:
+      - key: MS_MECANICO_URL
+        value: https://taller-ms-mecanico.onrender.com
+      - key: MS_NOTIFICACION_URL
+        value: https://taller-ms-notificacion.onrender.com
+
+  - name: taller-ms-cliente
+    type: web
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: "./Cliente taller/taller.cl.duoc/Dockerfile"
+    dockerContext: "./Cliente taller/taller.cl.duoc"
+    healthCheckPath: /doc/swagger-ui.html
+    envVarGroups:
+      - taller-db
+
+  - name: taller-ms-factura
+    type: web
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: "./Facturacion taller/Dockerfile"
+    dockerContext: "./Facturacion taller"
+    healthCheckPath: /doc/swagger-ui.html
+    envVarGroups:
+      - taller-db
+
+  - name: taller-ms-inventario
+    type: web
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: "./Inventario taller/Dockerfile"
+    dockerContext: "./Inventario taller"
+    healthCheckPath: /doc/swagger-ui.html
+    envVarGroups:
+      - taller-db
+
+  - name: taller-ms-mecanico
+    type: web
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: "./Mecanico taller/Dockerfile"
+    dockerContext: "./Mecanico taller"
+    healthCheckPath: /doc/swagger-ui.html
+    envVarGroups:
+      - taller-db
+
+  - name: taller-ms-notificacion
+    type: web
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: "./Notificacion taller/Dockerfile"
+    dockerContext: "./Notificacion taller"
+    healthCheckPath: /doc/swagger-ui.html
+    envVarGroups:
+      - taller-db
+
+  - name: taller-ms-producto
+    type: web
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: "./Producto taller/Dockerfile"
+    dockerContext: "./Producto taller"
+    healthCheckPath: /doc/swagger-ui.html
+    envVarGroups:
+      - taller-db
+
+  - name: taller-ms-proveedor
+    type: web
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: "./Proveedor taller/Dockerfile"
+    dockerContext: "./Proveedor taller"
+    healthCheckPath: /doc/swagger-ui.html
+    envVarGroups:
+      - taller-db
+
+  - name: taller-ms-reparacion
+    type: web
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: "./Reparacion taller/Dockerfile"
+    dockerContext: "./Reparacion taller"
+    healthCheckPath: /doc/swagger-ui.html
+    envVarGroups:
+      - taller-db
+    envVars:
+      - key: MS_CITA_URL
+        value: https://taller-ms-cita.onrender.com
+
+  - name: taller-ms-vehiculo
+    type: web
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: "./Vehiculo taller/Dockerfile"
+    dockerContext: "./Vehiculo taller"
+    healthCheckPath: /doc/swagger-ui.html
+    envVarGroups:
+      - taller-db
+
+  - name: taller-gateway
+    type: web
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: "./Gateway taller/Dockerfile"
+    dockerContext: "./Gateway taller"
+    healthCheckPath: /doc/swagger-ui.html
+    envVars:
+      - key: MS_CITA_URL
+        value: https://taller-ms-cita.onrender.com
+      - key: MS_CLIENTE_URL
+        value: https://taller-ms-cliente.onrender.com
+      - key: MS_FACTURA_URL
+        value: https://taller-ms-factura.onrender.com
+      - key: MS_INVENTARIO_URL
+        value: https://taller-ms-inventario.onrender.com
+      - key: MS_MECANICO_URL
+        value: https://taller-ms-mecanico.onrender.com
+      - key: MS_NOTIFICACION_URL
+        value: https://taller-ms-notificacion.onrender.com
+      - key: MS_PRODUCTO_URL
+        value: https://taller-ms-producto.onrender.com
+      - key: MS_PROVEEDOR_URL
+        value: https://taller-ms-proveedor.onrender.com
+      - key: MS_REPARACION_URL
+        value: https://taller-ms-reparacion.onrender.com
+      - key: MS_VEHICULO_URL
+        value: https://taller-ms-vehiculo.onrender.com

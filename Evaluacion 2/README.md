@@ -97,12 +97,10 @@ mvn test
 
 ## Ejecución con Docker Compose
 
-```bash
-# Desde la raíz del proyecto, primero compilar cada servicio
-cd "Cita taller/taller.cl.duoc" && mvn package -DskipTests && cd ../..
-# ... repetir para cada servicio ...
+Todos los `Dockerfile` son multi-stage (compilan con Maven dentro del propio build de Docker), así que no hace falta compilar nada a mano:
 
-# Luego levantar todo el stack
+```bash
+# Desde la raíz del proyecto
 docker-compose up --build
 ```
 
@@ -110,6 +108,23 @@ Detener todos los servicios:
 ```bash
 docker-compose down
 ```
+
+---
+
+## Despliegue en Render
+
+El archivo [`render.yaml`](./render.yaml) en la raíz define un Blueprint con los 11 servicios (10 microservicios + gateway), cada uno construido desde su `Dockerfile` en plan `free`.
+
+Pasos:
+
+1. Sube el repo a GitHub (con `render.yaml` en la raíz).
+2. En Render: **New → Blueprint**, selecciona el repo. Render detecta `render.yaml` automáticamente.
+3. Render no ofrece MySQL gestionado, así que la base de datos vive en un proveedor externo con free tier (Aiven, Railway, Clever Cloud, etc.). Antes o durante la creación del Blueprint, completa el Environment Group **`taller-db`** con:
+   - `SPRING_DATASOURCE_URL` → ej. `jdbc:mysql://<host-externo>:<puerto>/bd_taller?createDatabaseIfNotExist=true`
+   - `SPRING_DATASOURCE_USERNAME`
+   - `SPRING_DATASOURCE_PASSWORD`
+4. Los microservicios se comunican entre sí y con el gateway por sus URLs públicas `https://taller-ms-xxx.onrender.com` (el plan free no acepta tráfico por red privada interna). Esas URLs ya están precargadas en `render.yaml` según los nombres de servicio definidos ahí; si Render le agrega un sufijo al nombre por estar repetido (poco probable con estos nombres), hay que actualizar la variable `MS_*_URL` correspondiente en el servicio que la usa.
+5. Como son servicios free, se "duermen" tras 15 min sin tráfico — la primera petición después de inactividad tarda más (cold start).
 
 ---
 
