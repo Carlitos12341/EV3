@@ -17,8 +17,8 @@ services:
     runtime: docker
     plan: free
     region: oregon
-    dockerfilePath: "./Cita taller/taller.cl.duoc/Dockerfile"
-    dockerContext: "./Cita taller/taller.cl.duoc"
+    dockerfilePath: "./Evaluacion 2/Cita taller/taller.cl.duoc/Dockerfile"
+    dockerContext: "./Evaluacion 2/Cita taller/taller.cl.duoc"
     healthCheckPath: /doc/swagger-ui.html
     envVarGroups:
       - taller-db
@@ -33,8 +33,8 @@ services:
     runtime: docker
     plan: free
     region: oregon
-    dockerfilePath: "./Cliente taller/taller.cl.duoc/Dockerfile"
-    dockerContext: "./Cliente taller/taller.cl.duoc"
+    dockerfilePath: "./Evaluacion 2/Cliente taller/taller.cl.duoc/Dockerfile"
+    dockerContext: "./Evaluacion 2/Cliente taller/taller.cl.duoc"
     healthCheckPath: /doc/swagger-ui.html
     envVarGroups:
       - taller-db
@@ -44,8 +44,8 @@ services:
     runtime: docker
     plan: free
     region: oregon
-    dockerfilePath: "./Facturacion taller/Dockerfile"
-    dockerContext: "./Facturacion taller"
+    dockerfilePath: "./Evaluacion 2/Facturacion taller/Dockerfile"
+    dockerContext: "./Evaluacion 2/Facturacion taller"
     healthCheckPath: /doc/swagger-ui.html
     envVarGroups:
       - taller-db
@@ -55,8 +55,8 @@ services:
     runtime: docker
     plan: free
     region: oregon
-    dockerfilePath: "./Inventario taller/Dockerfile"
-    dockerContext: "./Inventario taller"
+    dockerfilePath: "./Evaluacion 2/Inventario taller/Dockerfile"
+    dockerContext: "./Evaluacion 2/Inventario taller"
     healthCheckPath: /doc/swagger-ui.html
     envVarGroups:
       - taller-db
@@ -66,8 +66,8 @@ services:
     runtime: docker
     plan: free
     region: oregon
-    dockerfilePath: "./Mecanico taller/Dockerfile"
-    dockerContext: "./Mecanico taller"
+    dockerfilePath: "./Evaluacion 2/Mecanico taller/Dockerfile"
+    dockerContext: "./Evaluacion 2/Mecanico taller"
     healthCheckPath: /doc/swagger-ui.html
     envVarGroups:
       - taller-db
@@ -77,8 +77,8 @@ services:
     runtime: docker
     plan: free
     region: oregon
-    dockerfilePath: "./Notificacion taller/Dockerfile"
-    dockerContext: "./Notificacion taller"
+    dockerfilePath: "./Evaluacion 2/Notificacion taller/Dockerfile"
+    dockerContext: "./Evaluacion 2/Notificacion taller"
     healthCheckPath: /doc/swagger-ui.html
     envVarGroups:
       - taller-db
@@ -88,8 +88,8 @@ services:
     runtime: docker
     plan: free
     region: oregon
-    dockerfilePath: "./Producto taller/Dockerfile"
-    dockerContext: "./Producto taller"
+    dockerfilePath: "./Evaluacion 2/Producto taller/Dockerfile"
+    dockerContext: "./Evaluacion 2/Producto taller"
     healthCheckPath: /doc/swagger-ui.html
     envVarGroups:
       - taller-db
@@ -99,8 +99,8 @@ services:
     runtime: docker
     plan: free
     region: oregon
-    dockerfilePath: "./Proveedor taller/Dockerfile"
-    dockerContext: "./Proveedor taller"
+    dockerfilePath: "./Evaluacion 2/Proveedor taller/Dockerfile"
+    dockerContext: "./Evaluacion 2/Proveedor taller"
     healthCheckPath: /doc/swagger-ui.html
     envVarGroups:
       - taller-db
@@ -110,8 +110,8 @@ services:
     runtime: docker
     plan: free
     region: oregon
-    dockerfilePath: "./Reparacion taller/Dockerfile"
-    dockerContext: "./Reparacion taller"
+    dockerfilePath: "./Evaluacion 2/Reparacion taller/Dockerfile"
+    dockerContext: "./Evaluacion 2/Reparacion taller"
     healthCheckPath: /doc/swagger-ui.html
     envVarGroups:
       - taller-db
@@ -124,8 +124,8 @@ services:
     runtime: docker
     plan: free
     region: oregon
-    dockerfilePath: "./Vehiculo taller/Dockerfile"
-    dockerContext: "./Vehiculo taller"
+    dockerfilePath: "./Evaluacion 2/Vehiculo taller/Dockerfile"
+    dockerContext: "./Evaluacion 2/Vehiculo taller"
     healthCheckPath: /doc/swagger-ui.html
     envVarGroups:
       - taller-db
@@ -135,8 +135,8 @@ services:
     runtime: docker
     plan: free
     region: oregon
-    dockerfilePath: "./Gateway taller/Dockerfile"
-    dockerContext: "./Gateway taller"
+    dockerfilePath: "./Evaluacion 2/Gateway taller/Dockerfile"
+    dockerContext: "./Evaluacion 2/Gateway taller"
     healthCheckPath: /doc/swagger-ui.html
     envVars:
       - key: MS_CITA_URL
