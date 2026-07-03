@@ -20,9 +20,8 @@ services:
     dockerfilePath: "./Evaluacion 2/Cita taller/taller.cl.duoc/Dockerfile"
     dockerContext: "./Evaluacion 2/Cita taller/taller.cl.duoc"
     healthCheckPath: /doc/swagger-ui.html
-    envVarGroups:
-      - taller-db
     envVars:
+      - fromGroup: taller-db
       - key: MS_MECANICO_URL
         value: https://taller-ms-mecanico.onrender.com
       - key: MS_NOTIFICACION_URL
@@ -36,8 +35,8 @@ services:
     dockerfilePath: "./Evaluacion 2/Cliente taller/taller.cl.duoc/Dockerfile"
     dockerContext: "./Evaluacion 2/Cliente taller/taller.cl.duoc"
     healthCheckPath: /doc/swagger-ui.html
-    envVarGroups:
-      - taller-db
+    envVars:
+      - fromGroup: taller-db
 
   - name: taller-ms-factura
     type: web
@@ -47,8 +46,8 @@ services:
     dockerfilePath: "./Evaluacion 2/Facturacion taller/Dockerfile"
     dockerContext: "./Evaluacion 2/Facturacion taller"
     healthCheckPath: /doc/swagger-ui.html
-    envVarGroups:
-      - taller-db
+    envVars:
+      - fromGroup: taller-db
 
   - name: taller-ms-inventario
     type: web
@@ -58,8 +57,8 @@ services:
     dockerfilePath: "./Evaluacion 2/Inventario taller/Dockerfile"
     dockerContext: "./Evaluacion 2/Inventario taller"
     healthCheckPath: /doc/swagger-ui.html
-    envVarGroups:
-      - taller-db
+    envVars:
+      - fromGroup: taller-db
 
   - name: taller-ms-mecanico
     type: web
@@ -69,8 +68,8 @@ services:
     dockerfilePath: "./Evaluacion 2/Mecanico taller/Dockerfile"
     dockerContext: "./Evaluacion 2/Mecanico taller"
     healthCheckPath: /doc/swagger-ui.html
-    envVarGroups:
-      - taller-db
+    envVars:
+      - fromGroup: taller-db
 
   - name: taller-ms-notificacion
     type: web
@@ -80,8 +79,8 @@ services:
     dockerfilePath: "./Evaluacion 2/Notificacion taller/Dockerfile"
     dockerContext: "./Evaluacion 2/Notificacion taller"
     healthCheckPath: /doc/swagger-ui.html
-    envVarGroups:
-      - taller-db
+    envVars:
+      - fromGroup: taller-db
 
   - name: taller-ms-producto
     type: web
@@ -91,8 +90,8 @@ services:
     dockerfilePath: "./Evaluacion 2/Producto taller/Dockerfile"
     dockerContext: "./Evaluacion 2/Producto taller"
     healthCheckPath: /doc/swagger-ui.html
-    envVarGroups:
-      - taller-db
+    envVars:
+      - fromGroup: taller-db
 
   - name: taller-ms-proveedor
     type: web
@@ -102,8 +101,8 @@ services:
     dockerfilePath: "./Evaluacion 2/Proveedor taller/Dockerfile"
     dockerContext: "./Evaluacion 2/Proveedor taller"
     healthCheckPath: /doc/swagger-ui.html
-    envVarGroups:
-      - taller-db
+    envVars:
+      - fromGroup: taller-db
 
   - name: taller-ms-reparacion
     type: web
@@ -113,9 +112,8 @@ services:
     dockerfilePath: "./Evaluacion 2/Reparacion taller/Dockerfile"
     dockerContext: "./Evaluacion 2/Reparacion taller"
     healthCheckPath: /doc/swagger-ui.html
-    envVarGroups:
-      - taller-db
     envVars:
+      - fromGroup: taller-db
       - key: MS_CITA_URL
         value: https://taller-ms-cita.onrender.com
 
@@ -127,8 +125,8 @@ services:
     dockerfilePath: "./Evaluacion 2/Vehiculo taller/Dockerfile"
     dockerContext: "./Evaluacion 2/Vehiculo taller"
     healthCheckPath: /doc/swagger-ui.html
-    envVarGroups:
-      - taller-db
+    envVars:
+      - fromGroup: taller-db
 
   - name: taller-gateway
     type: web
