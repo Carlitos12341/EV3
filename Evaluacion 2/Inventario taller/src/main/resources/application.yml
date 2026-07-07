@@ -10,7 +10,9 @@ spring:
     password: ${SPRING_DATASOURCE_PASSWORD:root}
     hikari:
       maximum-pool-size: 2
-      minimum-idle: 1
+      minimum-idle: 0
+      connection-timeout: 20000
+      max-lifetime: 240000
   jpa:
     hibernate:
       ddl-auto: update
